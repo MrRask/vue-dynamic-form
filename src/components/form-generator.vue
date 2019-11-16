@@ -64,20 +64,21 @@ export default {
     }
   },
   created () {
-    var obj = {}
-    this.schema.map((item) => {
-      if (item.type === 'el-checkbox-group') { obj[item.model] = [] } else obj[item.model] = null
-    })
-    this.form = obj
+    this.form = this.initalStructure()
   },
-  beforeUpdate (val) {
-    var obj = {}
-    this.schema.map((item) => {
-      if (item.type === 'el-checkbox-group') { obj[item.model] = [] } else obj[item.model] = null
-    })
-    this.form = obj
+  watch: {
+    'schema': function () {
+      this.form = this.initalStructure()
+    }
   },
   methods: {
+    initalStructure () {
+      var obj = {}
+      this.schema.map((item) => {
+        if (item.type === 'el-checkbox-group') { obj[item.model] = [] } else obj[item.model] = null
+      })
+      return obj
+    },
     submitForm () {
       console.log(this.form)
     }

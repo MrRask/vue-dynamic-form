@@ -6,7 +6,9 @@
         <form-schema @create="addSchema"></form-schema>
       </div>
       <div class="col-xs-6">
-        <form-generator :schema="schema"></form-generator>
+        <el-card class="box-card" shadow="never">
+          <form-generator :schema="schema"></form-generator>
+        </el-card>
       </div>
     </div>
   </div>
@@ -15,6 +17,7 @@
 <script>
 import FormSchema from '@/components/form-schema'
 import FormGenerator from '@/components/form-generator'
+import { schema } from '@/mock/schema'
 export default {
   name: 'home',
   components: {
@@ -24,7 +27,7 @@ export default {
   data () {
     return {
       form: {},
-      schema: []
+      schema: schema
     }
   },
   created () {

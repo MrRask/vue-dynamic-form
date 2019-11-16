@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import locale from 'element-ui/lib/locale/lang/th'
 import ElementUI from 'element-ui'
+import '@/assets/font.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'flexboxgrid'
 Vue.config.productionTip = false

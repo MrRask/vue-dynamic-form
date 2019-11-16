@@ -50,7 +50,7 @@
     </el-form-item>
     <el-form-item v-if="schema.length">
       <el-button type="primary" size="small" @click="submitForm">submit</el-button>
-      <el-button size="small">reset</el-button>
+      <el-button size="small" @click="resetForm">reset</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -96,6 +96,9 @@ export default {
 
         }
       })
+    },
+    resetForm (formName) {
+      this.$refs.form.resetFields()
     }
   }
 }

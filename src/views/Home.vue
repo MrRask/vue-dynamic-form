@@ -7,7 +7,10 @@
       </div>
       <div class="col-xs-6">
         <el-card class="box-card" shadow="never">
-          <form-generator :schema="schema"></form-generator>
+          <div>
+            <b>Result :</b>
+          </div>
+          <form-generator :schema="schema" :rules="rules"></form-generator>
         </el-card>
       </div>
     </div>
@@ -17,7 +20,6 @@
 <script>
 import FormSchema from '@/components/form-schema'
 import FormGenerator from '@/components/form-generator'
-import { schema } from '@/mock/schema'
 export default {
   name: 'home',
   components: {
@@ -27,7 +29,8 @@ export default {
   data () {
     return {
       form: {},
-      schema: schema
+      schema: [],
+      rules: {}
     }
   },
   created () {
@@ -43,7 +46,8 @@ export default {
   },
   methods: {
     addSchema (val) {
-      this.schema.push(val)
+      this.schema.push(val.form)
+      this.rules = val.rules
       console.log(this.schema)
     }
   }

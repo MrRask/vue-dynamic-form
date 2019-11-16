@@ -9,17 +9,23 @@
     <el-form-item label="type">
       <el-select
         v-model="form.type"
-        placeholder="please select your zone"
+        placeholder="please select your type"
         size="small"
         style="width:100%"
       >
         <el-option :label="item" :value="item" v-for="(item,index) in typeList" :key="index"></el-option>
       </el-select>
     </el-form-item>
+    <el-form-item label="required">
+      <el-switch v-model="form.required"></el-switch>
+    </el-form-item>
+    <el-form-item label="error message">
+      <el-input v-model="form.errorMessage" size="small"></el-input>
+    </el-form-item>
     <el-form-item label="inputType" v-if="form.type == 'el-input'">
       <el-select
         v-model="form.inputType"
-        placeholder="please select your zone"
+        placeholder="please select your type"
         size="small"
         style="width:100%"
       >
@@ -56,6 +62,7 @@ export default {
       typeList: ['el-input', 'el-select', 'el-radio-group', 'el-checkbox-group'],
       inputTypeList: ['date', 'password', 'text', 'textarea'],
       values: [],
+      rules: {},
       value: ''
     }
   },
@@ -69,7 +76,12 @@ export default {
     },
     onSubmit () {
       this.form.values = this.values
-      this.$emit('create', this.form)
+      this.rules[this.form.model] = [{
+        required: this.form.required,
+        message: this.form.errorMessage
+      }]
+      console.log(this.rules)
+      this.$emit('create', { form: this.form, rules: this.rules })
       this.form = {}
       this.values = []
     }

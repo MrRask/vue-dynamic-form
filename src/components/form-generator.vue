@@ -1,6 +1,11 @@
 <template>
-  <el-form ref="form" :model="form" label-width="120px">
-    <el-form-item :label="item.label" v-for="(item,index) in schema" :key="index">
+  <el-form ref="form" :model="form" :rules="rules" label-width="120px">
+    <el-form-item
+      :label="item.label"
+      v-for="(item,index) in schema"
+      :key="index"
+      :prop="item.model"
+    >
       <template v-if="item.type=='el-radio-group'">
         <el-radio-group v-model="form[item.model]" :prop="item.model">
           <el-radio :label="sub" v-for="(sub,index) in item.values" :key="index">{{sub}}</el-radio>
@@ -61,6 +66,10 @@ export default {
     schema: {
       type: Array,
       default: () => []
+    },
+    rules: {
+      type: Object,
+      default: () => { }
     }
   },
   created () {
@@ -80,7 +89,13 @@ export default {
       return obj
     },
     submitForm () {
-      console.log(this.form)
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          console.log(this.form)
+        } else {
+
+        }
+      })
     }
   }
 }

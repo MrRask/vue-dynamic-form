@@ -48,7 +48,7 @@
         </component>
       </template>
     </el-form-item>
-    <el-form-item v-if="schema.length">
+    <el-form-item v-if="schema.length && withOutSubmit">
       <el-button type="primary" size="small" @click="submitForm">submit</el-button>
       <el-button size="small" @click="resetForm">reset</el-button>
     </el-form-item>
@@ -70,6 +70,10 @@ export default {
     rules: {
       type: Object,
       default: () => { }
+    },
+    withOutSubmit: {
+      type: Boolean,
+      default: () => true
     }
   },
   created () {

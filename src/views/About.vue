@@ -74,10 +74,20 @@ export default {
                     style: {
                       width: '100%'
                     }
-                  },
+                  }
+                ]
+              },
+              {
+                answer: 'no',
+                schema: [
                   {
-                    answer: 'no',
-                    schema: []
+                    type: 'el-input',
+                    inputType: 'text',
+                    label: 'username',
+                    model: 'name',
+                    style: {
+                      width: '100%'
+                    }
                   }
                 ]
               }

@@ -14,12 +14,16 @@
         </el-card>
       </div>
     </div>
+    <div>schema : {{schema}}</div>
+    <hr />
+    <div>rules : {{rules}}</div>
   </div>
 </template>
 
 <script>
 import FormSchema from '@/components/form-schema'
 import FormGenerator from '@/components/form-generator'
+import { schema } from '@/mock/schema'
 export default {
   name: 'home',
   components: {
@@ -29,7 +33,7 @@ export default {
   data () {
     return {
       form: {},
-      schema: [],
+      schema: schema,
       rules: {}
     }
   },

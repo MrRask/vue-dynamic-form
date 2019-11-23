@@ -14,7 +14,7 @@
                   <th style="width:20px">No</th>
                   <th style="width:500px">Question</th>
                   <th style="width:200px">Answer</th>
-                  <th style="width:500px">Option</th>
+                  <th style="width:400px">Option</th>
                 </tr>
               </thead>
               <tbody>
@@ -31,7 +31,11 @@
                     </el-radio-group>
                   </td>
                   <td>
-                    <FormGenerator :schema="renderSchema(item.answer.model,item.option)"></FormGenerator>
+                    <FormGenerator
+                      :schema="renderSchema(item.answer.model,item.option)"
+                      with-out-submit
+                      label-position="top"
+                    ></FormGenerator>
                   </td>
                 </tr>
               </tbody>

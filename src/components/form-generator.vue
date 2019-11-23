@@ -1,5 +1,11 @@
 <template>
-  <el-form ref="form" :model="form" :rules="rules" label-width="120px">
+  <el-form
+    ref="form"
+    :label-position="labelPosition"
+    :model="form"
+    :rules="rules"
+    label-width="120px"
+  >
     <el-form-item
       :label="item.label"
       v-for="(item,index) in schema"
@@ -48,7 +54,7 @@
         </component>
       </template>
     </el-form-item>
-    <el-form-item v-if="schema.length && withOutSubmit">
+    <el-form-item v-if="schema.length && !withOutSubmit">
       <el-button type="primary" size="small" @click="submitForm">submit</el-button>
       <el-button size="small" @click="resetForm">reset</el-button>
     </el-form-item>
@@ -73,7 +79,11 @@ export default {
     },
     withOutSubmit: {
       type: Boolean,
-      default: () => true
+      default: () => false
+    },
+    labelPosition: {
+      type: String,
+      default: () => 'right'
     }
   },
   created () {

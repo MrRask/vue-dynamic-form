@@ -4,30 +4,46 @@
     <div class="row">
       <div class="col-xs-12">
         <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>{{schema.name}}</span>
+          <div
+            slot="header"
+            class="clearfix"
+          >
+            <span>{{ schema.name }}</span>
           </div>
           <div>
             <table>
               <thead>
                 <tr>
-                  <th style="width:20px">No</th>
-                  <th style="width:500px">Question</th>
-                  <th style="width:200px">Answer</th>
-                  <th style="width:400px">Option</th>
+                  <th style="width:20px">
+                    No
+                  </th>
+                  <th style="width:500px">
+                    Question
+                  </th>
+                  <th style="width:200px">
+                    Answer
+                  </th>
+                  <th style="width:400px">
+                    Option
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item,index) in schema.questions" :key="index">
-                  <td>{{index+1}}</td>
-                  <td>{{item.question}}</td>
+                <tr
+                  v-for="(item,index) in schema.questions"
+                  :key="index"
+                >
+                  <td>{{ index+1 }}</td>
+                  <td>{{ item.question }}</td>
                   <td>
                     <el-radio-group v-model="item.answer.model">
                       <el-radio
-                        :label="sub"
                         v-for="(sub,index) in item.answer.values"
                         :key="index"
-                      >{{sub}}</el-radio>
+                        :label="sub"
+                      >
+                        {{ sub }}
+                      </el-radio>
                     </el-radio-group>
                   </td>
                   <td>

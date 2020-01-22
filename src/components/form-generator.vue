@@ -7,19 +7,28 @@
     label-width="120px"
   >
     <el-form-item
-      :label="item.label"
       v-for="(item,index) in schema"
       :key="index"
+      :label="item.label"
       :prop="item.model"
     >
       <template v-if="item.type=='el-radio-group'">
-        <el-radio-group v-model="form[item.model]" :prop="item.model">
-          <el-radio :label="sub" v-for="(sub,index) in item.values" :key="index">{{sub}}</el-radio>
+        <el-radio-group
+          v-model="form[item.model]"
+          :prop="item.model"
+        >
+          <el-radio
+            v-for="(sub,index) in item.values"
+            :key="index"
+            :label="sub"
+          >
+            {{ sub }}
+          </el-radio>
         </el-radio-group>
       </template>
       <template v-else>
         <component
-          v-bind:is="item.type"
+          :is="item.type"
           v-model="form[item.model]"
           :size="'small'"
           :type="item.inputType"
@@ -28,10 +37,10 @@
         >
           <template v-if="item.type == 'el-select' && item.values">
             <el-option
-              :label="sub"
-              :value="sub"
               v-for="(sub,index) in item.values"
               :key="'el-option'+index"
+              :label="sub"
+              :value="sub"
             ></el-option>
           </template>
           <template v-else-if="item.type=='el-radio-group' && item.values">
@@ -41,7 +50,9 @@
               :label="sub"
               :name="sub"
               :value="sub"
-            >{{sub}}</el-radio>
+            >
+              {{ sub }}
+            </el-radio>
           </template>
           <template v-else-if="item.type=='el-checkbox-group' && item.values">
             <el-checkbox
@@ -55,19 +66,25 @@
       </template>
     </el-form-item>
     <el-form-item v-if="schema.length && !withOutSubmit">
-      <el-button type="primary" size="small" @click="submitForm">submit</el-button>
-      <el-button size="small" @click="resetForm">reset</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        @click="submitForm"
+      >
+        submit
+      </el-button>
+      <el-button
+        size="small"
+        @click="resetForm"
+      >
+        reset
+      </el-button>
     </el-form-item>
   </el-form>
 </template>
 <script>
 export default {
-  name: 'form-generator',
-  data () {
-    return {
-      form: {}
-    }
-  },
+  name: 'FormGenerator',
   props: {
     schema: {
       type: Array,
@@ -86,13 +103,18 @@ export default {
       default: () => 'right'
     }
   },
-  created () {
-    this.form = this.initalStructure()
+  data () {
+    return {
+      form: {}
+    }
   },
   watch: {
     'schema': function () {
       this.form = this.initalStructure()
     }
+  },
+  created () {
+    this.form = this.initalStructure()
   },
   methods: {
     initalStructure () {

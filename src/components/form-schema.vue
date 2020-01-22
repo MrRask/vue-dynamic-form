@@ -1,10 +1,20 @@
 <template>
-  <el-form ref="form" :model="form" label-width="120px">
+  <el-form
+    ref="form"
+    :model="form"
+    label-width="120px"
+  >
     <el-form-item label="label">
-      <el-input v-model="form.label" size="small"></el-input>
+      <el-input
+        v-model="form.label"
+        size="small"
+      ></el-input>
     </el-form-item>
     <el-form-item label="model">
-      <el-input v-model="form.model" size="small"></el-input>
+      <el-input
+        v-model="form.model"
+        size="small"
+      ></el-input>
     </el-form-item>
     <el-form-item label="type">
       <el-select
@@ -13,44 +23,96 @@
         size="small"
         style="width:100%"
       >
-        <el-option :label="item" :value="item" v-for="(item,index) in typeList" :key="index"></el-option>
+        <el-option
+          v-for="(item,index) in typeList"
+          :key="index"
+          :label="item"
+          :value="item"
+        ></el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="required">
       <el-switch v-model="form.required"></el-switch>
     </el-form-item>
     <el-form-item label="error message">
-      <el-input v-model="form.errorMessage" size="small"></el-input>
+      <el-input
+        v-model="form.errorMessage"
+        size="small"
+      ></el-input>
     </el-form-item>
-    <el-form-item label="inputType" v-if="form.type == 'el-input'">
+    <el-form-item
+      v-if="form.type == 'el-input'"
+      label="inputType"
+    >
       <el-select
         v-model="form.inputType"
         placeholder="please select your type"
         size="small"
         style="width:100%"
       >
-        <el-option :label="item" :value="item" v-for="(item,index) in inputTypeList" :key="index"></el-option>
+        <el-option
+          v-for="(item,index) in inputTypeList"
+          :key="index"
+          :label="item"
+          :value="item"
+        ></el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="values" v-else>
+    <el-form-item
+      v-else
+      label="values"
+    >
       <el-col :span="11">
-        <el-input type="text" size="small" v-model="value"></el-input>
+        <el-input
+          v-model="value"
+          type="text"
+          size="small"
+        ></el-input>
       </el-col>
-      <el-col :span="11" style="margin-left:0.5rem">
-        <el-button type="primary" size="small" @click="addValues">Add</el-button>
+      <el-col
+        :span="11"
+        style="margin-left:0.5rem"
+      >
+        <el-button
+          type="primary"
+          size="small"
+          @click="addValues"
+        >
+          Add
+        </el-button>
       </el-col>
     </el-form-item>
     <el-form-item v-if="form.type != 'el-input'">
-      <el-row :gutter="12" v-for="(item,index) in values" :key="index">
-        <el-col :span="11">{{item}}</el-col>
+      <el-row
+        v-for="(item,index) in values"
+        :key="index"
+        :gutter="12"
+      >
+        <el-col :span="11">
+          {{ item }}
+        </el-col>
         <el-col :span="1">
-          <el-link type="primary" size="small" @click="delValues(index)">ลบ</el-link>
+          <el-link
+            type="primary"
+            size="small"
+            @click="delValues(index)"
+          >
+            ลบ
+          </el-link>
         </el-col>
       </el-row>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit" size="small">Create</el-button>
-      <el-button size="small">Cancel</el-button>
+      <el-button
+        type="primary"
+        size="small"
+        @click="onSubmit"
+      >
+        Create
+      </el-button>
+      <el-button size="small">
+        Cancel
+      </el-button>
     </el-form-item>
   </el-form>
 </template>

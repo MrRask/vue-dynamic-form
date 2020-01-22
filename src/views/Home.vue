@@ -6,17 +6,27 @@
         <form-schema @create="addSchema"></form-schema>
       </div>
       <div class="col-xs-6">
-        <el-card class="box-card" shadow="never">
+        <el-card
+          class="box-card"
+          shadow="never"
+        >
           <div>
             <b>Result :</b>
           </div>
-          <form-generator :schema="schema" :rules="rules"></form-generator>
+          <form-generator
+            :schema="schema"
+            :rules="rules"
+          ></form-generator>
         </el-card>
       </div>
     </div>
-    <div>schema : {{schema}}</div>
+    <div>
+      <pre>{{ schema }}</pre>
+    </div>
     <hr />
-    <div>rules : {{rules}}</div>
+    <div>
+      <pre>{{ rules }}</pre>
+    </div>
   </div>
 </template>
 
@@ -25,7 +35,7 @@ import FormSchema from '@/components/form-schema'
 import FormGenerator from '@/components/form-generator'
 import { schema } from '@/mock/schema'
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
     FormGenerator,
     FormSchema

@@ -75,7 +75,7 @@ export default {
               disabled: false,
               col: 6,
               regex: /test/,
-              rules: 'title == 2 && gender == 3'
+              rules: 'title == 2 && (gender == 3 || gender)'
             }
           ]
         }

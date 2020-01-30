@@ -48,41 +48,19 @@
   </div>
 </template>
 <script>
+import { schema } from '@/mock/schema-v2'
 export default {
   data () {
     return {
       form: {},
-      schema: [
-        {
-          label: 'คำนำหน้า',
-          horizontal: true,
-          field: [
-            {
-              is: 'el-input',
-              type: 'text',
-              value: 'title',
-              placeholder: 'กรุณากรอกข้อมูล',
-              required: true,
-              disabled: false,
-              col: 6
-            },
-            {
-              is: 'el-input',
-              type: 'text',
-              value: 'name',
-              placeholder: 'กรุณากรอกข้อมูล',
-              required: true,
-              disabled: false,
-              col: 6,
-              regex: /test/,
-              rules: 'title == 2 && (gender == 3 || gender)'
-            }
-          ]
-        }
-      ],
+      schema,
       ruleForm: {},
       rules: {}
     }
+  },
+  created () {
+    console.log(this.getSchema())
+    this.getSchema()
   },
   methods: {
     submitForm (formName) {

@@ -18,11 +18,12 @@
           :prop="item.model"
         >
           <el-radio
-            v-for="(sub,index) in item.values"
-            :key="index"
-            :label="sub"
+            v-for="(sub,subIndex) in item.options"
+            :key="'el-radio'+subIndex"
+            :label="sub.label"
+            :value="sub.value"
           >
-            {{ sub }}
+            {{ sub.label }}
           </el-radio>
         </el-radio-group>
       </template>
@@ -35,32 +36,24 @@
           :style="item.style"
           :prop="item.model"
         >
-          <template v-if="item.type == 'el-select' && item.values">
+          <template v-if="item.type == 'el-select'">
             <el-option
-              v-for="(sub,index) in item.values"
-              :key="'el-option'+index"
-              :label="sub"
-              :value="sub"
-            ></el-option>
-          </template>
-          <template v-else-if="item.type=='el-radio-group' && item.values">
-            <el-radio
-              v-for="(sub,index) in item.values"
-              :key="'el-radio'+index"
-              :label="sub"
-              :name="sub"
-              :value="sub"
+              v-for="(sub,subIndex) in item.options"
+              :key="'el-option'+subIndex"
+              :label="sub.label"
+              :value="sub.value"
             >
-              {{ sub }}
-            </el-radio>
+              {{ sub.label }}
+            </el-option>
           </template>
-          <template v-else-if="item.type=='el-checkbox-group' && item.values">
+          <template v-else-if="item.type=='el-checkbox-group'">
             <el-checkbox
-              v-for="(sub,index) in item.values"
-              :key="'el-checkbox'+index"
-              :label="sub"
-              :value="sub"
-            ></el-checkbox>
+              v-for="(sub,subIndex) in item.options"
+              :key="'el-checkbox'+subIndex"
+              :label="sub.value"
+            >
+              {{ sub.label }}
+            </el-checkbox>
           </template>
         </component>
       </template>
@@ -120,7 +113,11 @@ export default {
     initalStructure () {
       var obj = {}
       this.schema.map((item) => {
-        if (item.type === 'el-checkbox-group') { obj[item.model] = [] } else obj[item.model] = null
+        if (item.type === 'el-checkbox-group') {
+          obj[item.model] = item.defaultValue ? item.defaultValue : []
+        } else {
+          obj[item.model] = item.defaultValue
+        }
       })
       return obj
     },

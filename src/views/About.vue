@@ -38,8 +38,8 @@
                   <td>
                     <el-radio-group v-model="item.answer.model">
                       <el-radio
-                        v-for="(sub,index) in item.answer.values"
-                        :key="index"
+                        v-for="(sub,subIndex) in item.answer.values"
+                        :key="subIndex"
                         :label="sub"
                       >
                         {{ sub }}

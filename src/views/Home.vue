@@ -33,7 +33,8 @@
 <script>
 import FormSchema from '@/components/form-schema'
 import FormGenerator from '@/components/form-generator'
-import { schema } from '@/mock/schema'
+// import { schema } from '@/mock/schema'
+import axios from 'axios'
 export default {
   name: 'Home',
   components: {
@@ -43,12 +44,14 @@ export default {
   data () {
     return {
       form: {},
-      schema: schema,
+      schema: [],
       rules: {}
     }
   },
-  created () {
+  async created () {
     // set structor
+    this.schema = await this.getSchema()
+    console.log(this.schema)
     var obj = {}
     this.schema.map((item) => {
       if (item.type === 'el-checkbox-group') { obj[item.model] = [] } else obj[item.model] = null
@@ -59,6 +62,10 @@ export default {
     console.log('DESTROYYYY!!!')
   },
   methods: {
+    getSchema: async function () {
+      let { data } = await axios.get(`http://192.168.145.252:8007/api/v1/setting/app-form/1`)
+      return data
+    },
     addSchema (val) {
       this.schema.push(val.form)
       this.rules = val.rules
